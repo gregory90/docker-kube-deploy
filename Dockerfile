@@ -9,4 +9,6 @@ RUN apk add --update -t deps curl ca-certificates \
  && apk del --purge deps \
  && rm /var/cache/apk/*
 
+ADD envsubst envsubst
+
 CMD ["kubectl"]
