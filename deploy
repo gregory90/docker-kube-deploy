@@ -7,11 +7,22 @@ FOLDER=$1
 cp -r $FOLDER /data
 
 # replace all placeholders with env variables in place
-for entry in /data/*
-do
-  file=$(echo $entry | cut -d"/" -f3)
+#for entry in /data/*
+#do
+  #file=$(echo $entry | cut -d"/" -f3)
 
-  /envsubst.sh "$(cat $entry)" > $entry
+  #/envsubst.sh "$(cat $entry)" > $entry
+#done
+for file in /data/*
+do
+    TPL=$(cat $file)
+    for row in $(env)
+    do
+        IFS="="
+        read key val <<< "$row"
+        TPL=$(echo -n $TPL | sed "s\$\\\$$key\$$val\$")
+    done
+    echo -n $TPL > "/done/$(basename $file)"
 done
 
 # authenticate kubectl
@@ -21,8 +32,8 @@ kubectl config set-context default-context --user=default-admin --cluster=defaul
 kubectl config use-context default-context
 
 # deploy objects to k8s 
-cat /data/pod.yml
-cat /data/ingress.yml
-cat /data/service.yml
+cat /done/pod.yml
+cat /done/ingress.yml
+cat /done/service.yml
 
-kubectl apply -f /data
+kubectl apply -f /done
