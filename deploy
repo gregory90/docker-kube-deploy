@@ -23,11 +23,3 @@ kubectl config use-context default-context
 # deploy objects to k8s 
 # kubectl apply -f /data
 echo "NOT DEPLOYING"
-
-# clean repository
-# authenticate to google cloud
-echo $DOCKER_KEYFILE > /key.json
-/google-cloud-sdk/bin/gcloud auth activate-service-account "$GCLOUD_ACCOUNT" --key-file /key.json --project "$GCLOUD_PROJECT" -q
-
-# get list of tags
-/google-cloud-sdk/bin/gcloud alpha container images list-tags $DOCKER_REGISTRY_HOST/$CI_PROJECT_PATH
