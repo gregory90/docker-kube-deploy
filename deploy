@@ -21,5 +21,7 @@ kubectl config set-credentials default-admin --username=$K8S_ADMIN --password $K
 kubectl config set-context default-context --user=default-admin --cluster=default-cluster
 kubectl config use-context default-context
 
+kubectl config view
+
 # deploy objects to k8s 
 kubectl apply -f /data
