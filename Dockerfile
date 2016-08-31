@@ -51,4 +51,7 @@ RUN y | gcloud components update alpha
 COPY ./envsubst.sh /envsubst.sh
 RUN chmod +x /envsubst.sh
 
+COPY ./deploy /deploy
+RUN chmod +x /deploy
+
 CMD ["kubectl"]
