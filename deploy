@@ -16,7 +16,7 @@ done
 
 # authenticate kubectl
 echo $K8S_CA > /ca.pem
-kubectl config set-cluster default-cluster --server=$K8S_MASTER_HOST --certificate-authority=/ca.pem --embed-certs=true 
+kubectl config set-cluster default-cluster --insecure-skip-tls-verify=true --server=$K8S_MASTER_HOST 
 kubectl config set-credentials default-admin --username=$K8S_ADMIN --password $K8S_PASSWORD
 kubectl config set-context default-context --user=default-admin --cluster=default-cluster
 kubectl config use-context default-context
