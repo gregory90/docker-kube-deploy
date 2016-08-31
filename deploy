@@ -21,5 +21,4 @@ kubectl config set-context default-context --user=default-admin --cluster=defaul
 kubectl config use-context default-context
 
 # deploy objects to k8s 
-# kubectl apply -f /data
-echo "NOT DEPLOYING"
+kubectl apply -f /data
