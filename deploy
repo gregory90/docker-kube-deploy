@@ -15,10 +15,11 @@ do
 done
 
 # authenticate kubectl
-kubectl config set-cluster default-cluster --server=https://$K8S_MASTER_HOST
+kubectl config set-cluster default-cluster --server=$K8S_MASTER_HOST
 kubectl config set-credentials default-admin --username=$K8S_ADMIN --password $K8S_PASSWORD
 kubectl config set-context default-context --user=default-admin --cluster=default-cluster
 kubectl config use-context default-context
 
+kubectl config view
 # deploy objects to k8s 
 kubectl apply -f /data
