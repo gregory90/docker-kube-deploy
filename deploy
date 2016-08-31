@@ -21,8 +21,6 @@ kubectl config set-context default-context --user=default-admin --cluster=defaul
 kubectl config use-context default-context
 
 # deploy objects to k8s 
-cat /data/pod.yml
-cat /data/ingress.yml
-cat /data/service.yml
 
+kubectl apply -f /data/namespace.yml
 kubectl apply -f /data
