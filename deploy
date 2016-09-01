@@ -7,6 +7,7 @@ FOLDER=$1
 cp -r $FOLDER /data
 
 # replace all placeholders with env variables in place
+echo "Replacing placeholders with env variables..."
 for entry in /data/*
 do
   file=$(echo $entry | cut -d"/" -f3)
@@ -15,12 +16,13 @@ do
 done
 
 # authenticate kubectl
+echo "Authenticating to cluster: $K8S_MASTER_HOST"
 kubectl config set-cluster default-cluster --insecure-skip-tls-verify=true --server=$K8S_MASTER_HOST 
 kubectl config set-credentials default-admin --username=$K8S_ADMIN --password $K8S_PASSWORD
 kubectl config set-context default-context --user=default-admin --cluster=default-cluster
 kubectl config use-context default-context
 
 # deploy objects to k8s 
-
-kubectl apply -f /data/namespace.yml
+echo "Deploying objects..."
 kubectl apply -f /data
+
