@@ -37,7 +37,7 @@ if [[ -n "$KUBE_CA_PEM" ]]; then
   echo "$KUBE_CA_PEM" > "$(pwd)/kube.ca.pem"
   export KUBE_CLUSTER_OPTIONS=--certificate-authority="$(pwd)/kube.ca.pem"
 fi
-kubectl config set-cluster default-cluster --insecure-skip-tls-verify=true --server=$KUBE_URL $KUBE_CLUSTER_OPTIONS
+kubectl config set-cluster default-cluster --server=$KUBE_URL $KUBE_CLUSTER_OPTIONS
 kubectl config set-credentials default-admin --token=$KUBE_TOKEN $KUBE_CLUSTER_OPTIONS
 kubectl config set-context default-context --user=default-admin --cluster=default-cluster
 kubectl config use-context default-context
