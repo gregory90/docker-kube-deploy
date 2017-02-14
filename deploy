@@ -54,6 +54,8 @@ EOF
 echo "Deploying objects..."
 kubectl apply -f /data
 
-echo "Checking deployment status..."
-kubectl rollout status deployment/$CI_PROJECT_NAME --namespace=$CI_PROJECT_NAMESPACE
+if [[ -z "$DEPLOY_NO_ROLLOUT" ]]; then
+  echo "Checking deployment status..."
+  kubectl rollout status deployment/$CI_PROJECT_NAME --namespace=$CI_PROJECT_NAMESPACE
+fi
 
