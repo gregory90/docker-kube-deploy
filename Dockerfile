@@ -1,6 +1,6 @@
 FROM sdurrheimer/alpine-glibc
 
-ENV KUBECTL_VERSION 1.3.6
+ENV KUBECTL_VERSION 1.7.6
 
 # Install kubectl
 RUN apk add --update -t deps curl ca-certificates \
