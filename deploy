@@ -17,6 +17,8 @@ fi
 # get folder with k8s objects
 FOLDER=$1
 
+rm -rf /data
+
 # copy all objects to data folder
 cp -r $FOLDER /data
 
