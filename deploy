@@ -58,6 +58,13 @@ kubectl apply -f /data
 
 if [[ -z "$DEPLOY_NO_ROLLOUT" ]]; then
   echo "Checking deployment status..."
-  kubectl rollout status deployment/$CI_PROJECT_NAME --namespace=$CI_PROJECT_NAMESPACE
+
+  if [[ -z "$2" ]]; then
+    kubectl rollout status deployment/$CI_PROJECT_NAME --namespace=$CI_PROJECT_NAMESPACE
+  fi
+
+  if [[ -n "$2" ]]; then
+    kubectl rollout status deployment/$2 --namespace=$CI_PROJECT_NAMESPACE
+  fi
 fi
 
